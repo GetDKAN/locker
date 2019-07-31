@@ -1,5 +1,5 @@
 {
-    "name": "fmizzell/locker",
+    "name": "getkdan/locker",
     "description": "A cross-process lock.",
     "license": "GPL-3.0-only",
     "authors": [
