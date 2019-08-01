@@ -1,38 +1,39 @@
 <?php
 
+namespace LockerTest;
 
 class LockerTest extends \PHPUnit\Framework\TestCase
 {
-  private $locker;
+    private $locker;
 
-  protected function setUp()
-  {
-    $this->locker = new \Locker\Locker("test", 5, 1);
-  }
-
-  public function testReleaseAndWait() {
-    $this->assertTrue($this->locker->getLock());
-
-    try {
-      $this->locker->getLock();
-    }
-    catch(\Exception $e) {
-      $this->assertEquals($e->getMessage(), "The lock was not acquire after 1 second(s).");
+    protected function setUp()
+    {
+        $this->locker = new \Locker\Locker("test", 5, 1);
     }
 
-    $this->locker->releaseLock();
-    $this->assertTrue($this->locker->getLock());
-  }
+    public function testReleaseAndWait()
+    {
+        $this->assertTrue($this->locker->getLock());
 
-  public function testExpiration() {
-    $this->assertTrue($this->locker->getLock());
-    sleep(6);
-    $this->assertTrue($this->locker->getLock());
-  }
+        try {
+            $this->locker->getLock();
+        } catch (\Exception $e) {
+            $this->assertEquals($e->getMessage(), "The lock was not acquire after 1 second(s).");
+        }
 
-  protected function tearDown()
-  {
-    $this->locker->releaseLock();
-  }
+        $this->locker->releaseLock();
+        $this->assertTrue($this->locker->getLock());
+    }
 
+    public function testExpiration()
+    {
+        $this->assertTrue($this->locker->getLock());
+        sleep(6);
+        $this->assertTrue($this->locker->getLock());
+    }
+
+    protected function tearDown()
+    {
+        $this->locker->releaseLock();
+    }
 }
