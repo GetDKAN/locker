@@ -1,5 +1,5 @@
 {
-    "name": "getkdan/locker",
+    "name": "getdkan/locker",
     "description": "A cross-process lock.",
     "license": "GPL-3.0-only",
     "authors": [
