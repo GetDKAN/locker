@@ -1,0 +1,4 @@
+.ddev
+.idea
+composer.lock
+vendor

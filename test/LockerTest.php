@@ -6,7 +6,7 @@ class LockerTest extends \PHPUnit\Framework\TestCase
 {
     private $locker;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->locker = new \Locker\Locker("test", 5, 1);
     }
@@ -32,8 +32,8 @@ class LockerTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($this->locker->getLock());
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
-        $this->locker->releaseLock();
+          $this->locker->releaseLock();
     }
 }
