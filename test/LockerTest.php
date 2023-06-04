@@ -2,16 +2,19 @@
 
 namespace LockerTest;
 
-class LockerTest extends \PHPUnit\Framework\TestCase
+use PHPUnit\Framework\TestCase;
+use Locker\Locker;
+
+class LockerTest extends TestCase
 {
-    private $locker;
+    private Locker $locker;
 
     protected function setUp(): void
     {
-        $this->locker = new \Locker\Locker("test", 5, 1);
+        $this->locker = new Locker("test", 5, 1);
     }
 
-    public function testReleaseAndWait()
+    public function testReleaseAndWait(): void
     {
         $this->assertTrue($this->locker->getLock());
 
@@ -25,7 +28,7 @@ class LockerTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($this->locker->getLock());
     }
 
-    public function testExpiration()
+    public function testExpiration(): void
     {
         $this->assertTrue($this->locker->getLock());
         sleep(6);

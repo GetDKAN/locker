@@ -5,7 +5,7 @@ namespace Locker;
 class Locker
 {
 
-    private $timeWaited = -1;
+    private int $timeWaited = -1;
     private $name;
     private $expire;
     private $wait;
@@ -33,7 +33,7 @@ class Locker
   /**
    * Wait until we get the lock, or we get tired of waiting.
    */
-    public function getLock()
+    public function getLock(): bool
     {
         do {
             $this->wait();
@@ -51,7 +51,7 @@ class Locker
   /**
    * Release the lock.
    */
-    public function releaseLock()
+    public function releaseLock(): void
     {
         $path = "/tmp/{$this->name}.lock";
         if (file_exists($path)) {
@@ -60,7 +60,7 @@ class Locker
         }
     }
 
-    private function wait()
+    private function wait(): void
     {
         if ($this->timeWaited >= 0) {
             sleep(1);
@@ -68,7 +68,7 @@ class Locker
         $this->timeWaited++;
     }
 
-    private function lockExpired()
+    private function lockExpired(): bool
     {
         $file = "/tmp/{$this->name}.lock/expire.txt";
         if (file_exists($file) && file_get_contents($file) < time()) {
@@ -78,7 +78,7 @@ class Locker
         return false;
     }
 
-    private function lockCreated()
+    private function lockCreated(): bool
     {
         $lock_path = "/tmp/{$this->name}.lock";
         if (@mkdir($lock_path, 0700)) {
