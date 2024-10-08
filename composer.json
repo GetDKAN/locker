@@ -1,6 +1,7 @@
 {
     "name": "getdkan/locker",
     "description": "A cross-process lock.",
+    "abandoned": true,
     "license": "GPL-3.0-only",
     "authors": [
         {
